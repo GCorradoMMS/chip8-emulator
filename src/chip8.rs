@@ -1,5 +1,3 @@
-mod chip8 {
-    
   pub fn initialize()
   {
       let mut _program_counter : u16 = 0x200;                  // Program counter starts at 0x200
@@ -32,14 +30,18 @@ mod chip8 {
         0xF0, 0x80, 0xF0, 0x80, 0xF0, // E
         0xF0, 0x80, 0xF0, 0x80, 0x80  // F
       ];
-      
-      for n in 0..80 {                        // Load fontset
-          _memory[n] = _chip8_fontset[n];
-      }
+      _chip8_fontset.map(|x| _memory.push(x));
+      println!("{:?}", _memory);
   }
-  
-  // pub fn emulateCycle()
-  // {
 
-  // }
-}
+  pub fn emulateCycle(opcode: u16)
+  {
+
+    match opcode & 0xF000
+    {
+      0x0000 => println!("Implement"),
+      0x000E => println!("Implement"),
+      _      => println!("Invalid opcode {}", opcode)
+    }
+
+  }
